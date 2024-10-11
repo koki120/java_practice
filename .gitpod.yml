@@ -1,0 +1,24 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: |
+      # プロジェクトの初期セットアップ
+      ./gradlew clean build   # Gradleビルドを行う例
+  - command: |
+      # プロジェクトの開始
+      ./gradlew run           # Javaプロジェクトを実行する例
+
+ports:
+  - port: 8080                # アプリケーションのポート設定
+    onOpen: open-browser      # ブラウザで自動的に開く
+
+vscode:
+  extensions:
+    - vscjava.vscode-java-dependency   # Java依存関係の管理
+    - vscjava.vscode-java-test         # Javaテストツール
+    - vscjava.vscode-maven             # Mavenサポート
+    - redhat.java                      # RedHatのJavaサポート
+    - vscjava.vscode-gradle            # Gradleサポート
+    - vscjava.vscode-java-pack         # Javaパック（主要なJava拡張が含まれている）
+    - vscjava.vscode-java-debug        # Javaデバッグツール
