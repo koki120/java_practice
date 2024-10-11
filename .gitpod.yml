@@ -9,9 +9,6 @@ tasks:
       # プロジェクトの開始
       ./gradlew run           # Javaプロジェクトを実行する例
 
-ports:
-  - port: 8080                # アプリケーションのポート設定
-    onOpen: open-browser      # ブラウザで自動的に開く
 
 vscode:
   extensions:
