@@ -1,70 +1,22 @@
-name: Java CI with Gradle
+name: Build
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
-  setup:
-
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-      with:
-        gradle-version: '8.10'
-
-    # キャッシュを有効にして、次のジョブが Gradle のセットアップを利用できるようにする
-    - name: Cache Gradle dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.gradle/caches
-        key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          gradle-${{ runner.os }}-
-
   build:
-    needs: setup  # setupジョブが完了した後に実行される
     runs-on: ubuntu-latest
-
     steps:
-    - name: Build with Gradle
-      run: gradle build
-
-  test:
-    needs: setup  # setupジョブが完了した後に実行される
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Run tests
-      run: gradle test
-
-  check:
-    needs: setup  # setupジョブが完了した後に実行される
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Linting and formatting
-      run: gradle check
-
-  dependency-submission:
-    needs: setup  # setupジョブが完了した後に実行される
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-    - name: Generate and submit dependency graph
-      uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: 21
+      - name: Setup Gradle 8.10
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.10" # Quotes required to prevent YAML converting to number
+      - name: Build with Gradle 8.10
+        run: gradle build
