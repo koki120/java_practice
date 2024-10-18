@@ -11,6 +11,14 @@
 			"installMaven": "false",
 			"installGradle": "true"
 		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscjava.vscode-java-debug",
+				"vscjava.vscode-java-pack"
+			]
+		}
 	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

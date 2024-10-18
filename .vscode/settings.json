@@ -1,0 +1,11 @@
+{
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java",  // JavaのデフォルトフォーマッターとしてRed HatのJavaプラグインを使用
+    "editor.formatOnSave": true,               // 保存時に自動フォーマットを有効化
+    "java.compile.nullAnalysis.mode": "automatic",  // NullPointerExceptionの自動検出を有効化
+    "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",  // Google Java Style Guideの設定を適用
+    "java.format.settings.profile": "GoogleStyle",  // Google Styleのプロファイルを適用
+    "editor.formatOnPaste": true,              // ペースト時に自動フォーマットを有効化
+    "editor.formatOnType": true                // タイプ時に自動フォーマットを有効化
+  }
+}
