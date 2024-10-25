@@ -17,6 +17,13 @@ jobs:
       - name: Setup Gradle 8.10
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: "8.10" # Quotes required to prevent YAML converting to number
+          gradle-version: "8.10"
       - name: Build with Gradle 8.10
         run: gradle build
+        working-directory: part1
+
+      - name: Show Test Results
+        if: always() # Ensure this runs even if the build fails
+        run: |
+          echo "Displaying Test Results..."
+          cat part1/build/reports/tests/test/index.html || true
